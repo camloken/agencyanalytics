@@ -8,8 +8,8 @@ import PreviewPanel from './components/PreviewPanel'
 import './App.css'
 
 function App() {
-  const [galleryData, setGalleryData] = useState<Array>(null)
-  const [selectedItem, setSelectedItem] = useState<object>(null)
+  const [galleryData, setGalleryData] = useState<Array | null>(null)
+  const [selectedItem, setSelectedItem] = useState<object | null>(null)
   // const [favoriteImages, setFavoriteImages] = useState(null)
   const { isLoading, data, error } = useFetch(
     'https://agencyanalytics-api.vercel.app/images.json'
@@ -57,8 +57,8 @@ function App() {
         <>
           <GalleryPanel
             imageData={galleryData}
-            setPreview={(id: string) => setPreview(id)}
-            setSelectedItem={(id: string) => setSelectedItem(id)}
+            setPreview={(id: string): void => setPreview(id)}
+            setSelectedItem={(id: string): void => setSelectedItem(id)}
             selectedItem={selectedItem.id}
           />
           <PreviewPanel
@@ -73,8 +73,8 @@ function App() {
             sizeInBytes={selectedItem.sizeInBytes<number>}
             favorited={selectedItem.favorited<boolean>}
             description={selectedItem.description<string>}
-            setFavorite={(id: string) => setFavorite(id)}
-            deleteItem={(id: string) => deleteItem(id)}
+            setFavorite={(id: string): void => setFavorite(id)}
+            deleteItem={(id: string): void => deleteItem(id)}
           />
         </>
       )}
