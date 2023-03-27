@@ -8,7 +8,7 @@ import PreviewPanel from './components/PreviewPanel'
 import './App.css'
 
 function App() {
-  const [galleryData, setGalleryData] = useState<array>(null)
+  const [galleryData, setGalleryData] = useState<Array>(null)
   const [selectedItem, setSelectedItem] = useState<object>(null)
   // const [favoriteImages, setFavoriteImages] = useState(null)
   const { isLoading, data, error } = useFetch(
@@ -62,17 +62,17 @@ function App() {
             selectedItem={selectedItem.id}
           />
           <PreviewPanel
-            id={selectedItem.id}
-            url={selectedItem.url}
-            filename={selectedItem.filename}
-            uploadedBy={selectedItem.uploadedBy}
-            createdAt={selectedItem.createdAt}
-            lastModified={selectedItem.lastModified}
-            dimensions={selectedItem.dimensions}
-            resolution={selectedItem.resolution}
-            sizeInBytes={selectedItem.sizeInBytes}
-            favorited={selectedItem.favorited}
-            description={selectedItem.description}
+            id={selectedItem.id<string>}
+            url={selectedItem.url<string>}
+            filename={selectedItem.filename<string>}
+            uploadedBy={selectedItem.uploadedBy<string>}
+            createdAt={selectedItem.createdAt<Date>}
+            lastModified={selectedItem.lastModified<Date>}
+            dimensions={selectedItem.dimensions<object>}
+            resolution={selectedItem.resolution<object>}
+            sizeInBytes={selectedItem.sizeInBytes<number>}
+            favorited={selectedItem.favorited<boolean>}
+            description={selectedItem.description<string>}
             setFavorite={(id: string) => setFavorite(id)}
             deleteItem={(id: string) => deleteItem(id)}
           />

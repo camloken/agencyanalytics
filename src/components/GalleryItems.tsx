@@ -26,7 +26,9 @@ function GalleryItems(galleyItemProps: {
       </section>
     )
   })
-  return items
+  // Items below must be wrapped to avoid Typescript build error
+  // eslint-disable-next-line react/jsx-no-useless-fragment
+  return <>{items}</>
 }
 
 export default GalleryItems
