@@ -8,7 +8,7 @@ import {
 import GalleryItems from './GalleryItems'
 
 function GalleryPanel(galleyPanelProps: {
-  imageData: Array<object>,
+  imageData: Array<any>,
   setPreview: (id: any) => void,
   setSelected: (el: any) => void,
   selectedItem: string,
@@ -21,9 +21,11 @@ function GalleryPanel(galleyPanelProps: {
   } = galleyPanelProps
 
   // Sorted by date
-  const sortedImages: Array<object> = imageData.sort((a: object, b: object) => new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf())
+  const sortedImages: Array<{ createdAt: string, favorited: boolean }> =
+  imageData.sort((a, b) => new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf())
   // Sorted by favorties
-  const favoriteImages: Array<object> = sortedImages.filter((item: object) => item.favorited<boolean> === true)
+  const favoriteImages: Array<{ favorited: boolean }> =
+  sortedImages.filter((item) => item.favorited === true)
 
   useEffect(() => {
     setSelected(sortedImages[0])

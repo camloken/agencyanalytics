@@ -7,11 +7,13 @@ type GridItem = {
   sizeInBytes: number,
 }
 
-function GalleryItems(galleyItemProps: {
+type GalleyItemProps = {
   imageData: Array<object>,
   setPreview: (id: string) => void,
   selectedItem: string,
-}) {
+}
+
+function GalleryItems(galleyItemProps: GalleyItemProps): JSX.Element {
   const {
     imageData,
     setPreview,
