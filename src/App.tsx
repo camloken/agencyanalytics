@@ -57,12 +57,11 @@ function App() {
         <>
           <GalleryPanel
             imageData={galleryData}
-            setPreview={(id) => setPreview(id)}
-            setSelectedItem={(id) => setSelectedItem(id)}
+            setPreview={(id: string) => setPreview(id)}
+            setSelectedItem={(id: string) => setSelectedItem(id)}
             selectedItem={selectedItem.id}
           />
           <PreviewPanel
-            galleryData={galleryData} // remove
             id={selectedItem.id}
             url={selectedItem.url}
             filename={selectedItem.filename}

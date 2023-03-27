@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import moment from 'moment'
 import HeartFilled from '../assets/HeartFilled'
 import HeartOutlined from '../assets/HeartOutlined'
 
 function PreviewPanel(selected: {
-  galleryData: [],
   id: string,
   url: string,
   filename: string,
@@ -21,7 +20,6 @@ function PreviewPanel(selected: {
   deleteItem: () => void,
 }) {
   const {
-    galleryData,
     id,
     url,
     filename,
