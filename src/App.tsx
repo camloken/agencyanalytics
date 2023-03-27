@@ -15,7 +15,7 @@ function App() {
     'https://agencyanalytics-api.vercel.app/images.json'
   )
 
-  function setPreview(id: string) {
+  function setPreview(id) {
     if (galleryData) {
       const selected = galleryData.find((item) => item.id === id)
       setSelectedItem(selected)
