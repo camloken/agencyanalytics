@@ -1,0 +1,268 @@
+:root {
+  font-family:  Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #333;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  --selected-blue: #4F45E4;
+  --text-light: #808080;
+  --border-color: #dadada;
+}
+
+body, html, * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #e6ecef;
+}
+
+h1, h2 {
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: 3.2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h4 {
+  font-size: 1em;
+}
+
+.text-light {
+  color: var(--text-light);
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.app {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.tab-panel {
+  flex: 1;
+  padding: 30px;
+  background-color: #F7FAFC;
+  height: 100vh;
+  overflow: auto;
+}
+
+.preview-panel {
+  background-color: #fff;
+  height: 100vh;
+  width: 350px;
+  padding: 30px;
+  border-left: 1px solid #eee;
+  box-shadow: -2px 0 2px #f5f5f5;
+  overflow: auto;
+}
+
+.preview-image {
+  margin-bottom: 15px;
+  border-radius: 10px;
+  width: 100%;
+  height: 210px;
+  background-color: #eee;
+}
+
+.preview-caption {
+  padding-right: 10px;
+  text-align: left;
+  flex: 1;
+  overflow: hidden;
+}
+
+.preview-panel .favorite-icon {
+  margin: 4px 1px 0 0;
+  color: #999;
+}
+
+.preview-panel .favorite-icon:hover {
+  transform: scale(1.1);
+  color: var(--selected-blue);
+  transition: 0.2s ease;
+}
+
+.favorite-icon.blue {
+  color: var(--selected-blue);
+}
+
+.preview-caption p {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.preview-list {
+  padding: 0;
+  list-style: none;
+  font-size: 0.875em;
+  margin-bottom: 30px;
+}
+
+.preview-list li {
+  display: flex;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.preview-list p {
+  flex: 1;
+}
+
+.preview-list h4 {
+  font-size: 1rem;
+}
+
+.preview-list li p {
+  margin: 0;
+}
+
+.preview-description {
+  font-size: 0.875em;
+  margin-bottom: 30px;
+}
+
+.react-tabs__tab-list {
+  list-style: none;
+  font-size: 0.875em;
+  font-weight: 600;
+  margin: 30px 0;
+  padding: 0;
+  color: #909090;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.react-tabs__tab {
+  display: inline-block;
+  border-bottom: 2px solid transparent;
+  margin-right: 30px;
+  padding-bottom: 10px;
+  margin-bottom: -1px;
+  user-select: none;
+}
+
+.react-tabs__tab:hover {
+  color: #708090;
+  border-bottom: 2px solid #b3c2cc;
+  transition: 0.4s ease;
+}
+
+.react-tabs__tab--selected,
+.react-tabs__tab--selected:hover {
+  color: var(--selected-blue);
+  border-bottom: 2px solid var(--selected-blue);
+  transition: 0.4s ease;
+}
+
+.react-tabs__tab--selected:focus-visible {
+  outline: none;
+}
+
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  align-items: stretch;
+  gap: 3%;
+}
+
+.grid-item {
+  font-size: 0.875em;
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-item .image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 3px 3px #bbb;
+  transition: 0.2s ease;
+}
+
+.grid-item .active {
+  outline: 2px solid var(--selected-blue);
+  outline-offset: 2px;
+}
+
+.grid-item .active.image:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.grid-item > div {
+  border-radius: 8px;
+  margin-bottom: 10px;
+  height: 150px;
+}
+
+.grid-item p  {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* HELPERS */
+.btn-default {
+  appearance: none;
+  background-color: transparent;
+  font-size: 0.875em;
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.btn-default:hover {
+  border-color: var(--selected-blue);
+  color: var(--selected-blue);
+  transition: 0.3s ease;
+}
+
+.btn-default.full {
+  width: 100%;
+}
+
+/* HELPERS */
+
+.m-0 {
+  margin: 0;
+}
+
+.flex-center {
+  align-self: center;
+  justify-self: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
