@@ -18,6 +18,7 @@ function PreviewPanel(selected: {
   description: string,
   setFavorite: () => void,
   setSelectedItem: () => void,
+  deleteItem: () => void,
 }) {
   const {
     galleryData,
@@ -33,6 +34,7 @@ function PreviewPanel(selected: {
     favorited,
     description,
     setFavorite,
+    deleteItem,
   } = selected
 
   const newDimensions = selected ? `${dimensions.width} x ${dimensions.height}` : '---'
@@ -40,7 +42,6 @@ function PreviewPanel(selected: {
 
   return (
     <div className="preview-panel">
-      {console.log('favorited', favorited)}
       <div
         className="preview-image"
         style={{ background: `url(${url}) center center / cover no-repeat` }}
@@ -76,6 +77,7 @@ function PreviewPanel(selected: {
       <button
         type="button"
         className="btn-default full"
+        onClick={() => deleteItem(id)}
       >
         Delete
       </button>

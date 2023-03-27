@@ -10,6 +10,7 @@ import './App.css'
 function App() {
   const [galleryData, setGalleryData] = useState(null)
   const [selectedItem, setSelectedItem] = useState(null)
+  // const [favoriteImages, setFavoriteImages] = useState(null)
   const { isLoading, data, error } = useFetch(
     'https://agencyanalytics-api.vercel.app/images.json'
   )
@@ -22,10 +23,22 @@ function App() {
   }
 
   function setFavorite(id) {
-    const favItem = galleryData.find((item) => item.id === id)
-    favItem.favorited = !favItem.favorited
-    setGalleryData([...galleryData, favItem])
-    setPreview(id)
+    const idExists = galleryData.find((item) => item.id === id)
+    if (idExists) {
+      const favItem = galleryData.find((item) => item.id === id)
+      favItem.favorited = !favItem.favorited
+      setGalleryData([...galleryData, favItem])
+      setPreview(id)
+    }
+  }
+
+  function deleteItem(id) {
+    const idExists = galleryData.find((item) => item.id === id)
+    if (idExists) {
+      const toRemove = galleryData.findIndex((item) => item.id === id)
+      const newData = galleryData.splice(toRemove, 1)
+      setGalleryData([...galleryData, newData])
+    }
   }
 
   useEffect(() => {
@@ -62,6 +75,7 @@ function App() {
             favorited={selectedItem.favorited}
             description={selectedItem.description}
             setFavorite={(id) => setFavorite(id)}
+            deleteItem={(id) => deleteItem(id)}
           />
         </>
       )}

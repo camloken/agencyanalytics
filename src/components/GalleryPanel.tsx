@@ -21,7 +21,7 @@ function GalleryPanel(galleyPanelProps: {
   } = galleyPanelProps
 
   const sortedImages = imageData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sorted by date
-  const favoriteImages = imageData.filter((item) => item.favorited === true) // Sorted by favorties
+  const favoriteImages = sortedImages.filter((item) => item.favorited === true) // Sorted by favorties
 
   useEffect(() => {
     setSelectedItem(sortedImages[0])
