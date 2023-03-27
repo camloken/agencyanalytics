@@ -8,23 +8,25 @@ import {
 import GalleryItems from './GalleryItems'
 
 function GalleryPanel(galleyPanelProps: {
-  imageData: [],
-  setPreview: () => void,
-  setSelectedItem: () => void,
+  imageData: Array<object>,
+  setPreview: (id: any) => void,
+  setSelected: (el: any) => void,
   selectedItem: string,
 }) {
   const {
     imageData,
     setPreview,
-    setSelectedItem,
+    setSelected,
     selectedItem,
   } = galleyPanelProps
 
-  const sortedImages: array = imageData.sort((a, b): any => new Date(b.createdAt<Date>) - new Date(a.createdAt<Date>)) // Sorted by date
-  const favoriteImages: array = sortedImages.filter((item) => item.favorited<boolean> === true) // Sorted by favorties
+  // Sorted by date
+  const sortedImages: Array<object> = imageData.sort((a: object, b: object) => new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf())
+  // Sorted by favorties
+  const favoriteImages: Array<object> = sortedImages.filter((item: object) => item.favorited<boolean> === true)
 
   useEffect(() => {
-    setSelectedItem(sortedImages[0]<object>)
+    setSelected(sortedImages[0])
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -32,8 +34,8 @@ function GalleryPanel(galleyPanelProps: {
     <Tabs className="tab-panel">
       <h2 className="m-0">Photos</h2>
       <TabList>
-        <Tab onClick={() => setSelectedItem(sortedImages[0]<object>)}>Recently Added</Tab>
-        <Tab onClick={() => setSelectedItem(favoriteImages[0]<object>)}>Favorited</Tab>
+        <Tab onClick={() => setSelected(sortedImages[0])}>Recently Added</Tab>
+        <Tab onClick={() => setSelected(favoriteImages[0])}>Favorited</Tab>
       </TabList>
       <TabPanel className="grid-wrapper">
         <GalleryItems

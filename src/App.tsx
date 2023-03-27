@@ -7,10 +7,27 @@ import GalleryPanel from './components/GalleryPanel'
 import PreviewPanel from './components/PreviewPanel'
 import './App.css'
 
+type GalleryItem = {
+  id: string,
+  url: string,
+  filename: string,
+  uploadedBy: string,
+  createdAt: Date,
+  lastModified: Date,
+  dimensions: { height: number, width: number },
+  resolution: { height: number; width: number },
+  sizeInBytes: number,
+  favorited: boolean,
+  description: string,
+  imageData: Array<object>,
+  setPreview: () => void,
+  setSelectedItem: () => void,
+  selectedItem: string,
+}
+
 function App() {
-  const [galleryData, setGalleryData] = useState<Array | null>(null)
-  const [selectedItem, setSelectedItem] = useState<object | null>(null)
-  // const [favoriteImages, setFavoriteImages] = useState(null)
+  const [galleryData, setGalleryData] = useState<Array<GalleryItem> | null>(null)
+  const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null)
   const { isLoading, data, error } = useFetch(
     'https://agencyanalytics-api.vercel.app/images.json'
   )
@@ -18,14 +35,13 @@ function App() {
   function setPreview(id: string) {
     if (galleryData) {
       const selected = galleryData.find((item) => item.id === id)
-      setSelectedItem(selected)
+      selected && setSelectedItem(selected)
     }
   }
 
   function setFavorite(id: string) {
-    const idExists = galleryData.find((item) => item.id === id)
-    if (idExists) {
-      const favItem = galleryData.find((item) => item.id === id)
+    const favItem = galleryData && galleryData.find((item) => item.id === id)
+    if (favItem) {
       favItem.favorited = !favItem.favorited
       setGalleryData([...galleryData, favItem])
       setPreview(id)
@@ -33,16 +49,17 @@ function App() {
   }
 
   function deleteItem(id: string) {
-    const idExists = galleryData.find((item) => item.id === id)
+    const idExists = galleryData && galleryData.find((item) => item.id === id)
     if (idExists) {
       const toRemove = galleryData.findIndex((item) => item.id === id)
       const newData = galleryData.splice(toRemove, 1)
-      setGalleryData([...galleryData, newData])
+      setGalleryData(newData)
     }
   }
 
   useEffect(() => {
     setGalleryData(data)
+    console.log('data', data)
     if (selectedItem === null && data) { setSelectedItem(data[0]) }
   }, [data, selectedItem, galleryData])
 
@@ -53,28 +70,28 @@ function App() {
       {error && (
         <div className="flex-center">{`There is a problem fetching the data - ${error}`}</div>
       )}
-      {galleryData && (
+      {galleryData && selectedItem && (
         <>
           <GalleryPanel
             imageData={galleryData}
-            setPreview={(id: string): void => setPreview(id)}
-            setSelectedItem={(id: string): void => setSelectedItem(id)}
+            setPreview={(el: any) => setPreview(el)}
+            setSelected={(id: any) => setSelectedItem(id)}
             selectedItem={selectedItem.id}
           />
           <PreviewPanel
-            id={selectedItem.id<string>}
-            url={selectedItem.url<string>}
-            filename={selectedItem.filename<string>}
-            uploadedBy={selectedItem.uploadedBy<string>}
-            createdAt={selectedItem.createdAt<Date>}
-            lastModified={selectedItem.lastModified<Date>}
-            dimensions={selectedItem.dimensions<object>}
-            resolution={selectedItem.resolution<object>}
-            sizeInBytes={selectedItem.sizeInBytes<number>}
-            favorited={selectedItem.favorited<boolean>}
-            description={selectedItem.description<string>}
-            setFavorite={(id: string): void => setFavorite(id)}
-            deleteItem={(id: string): void => deleteItem(id)}
+            id={selectedItem.id}
+            url={selectedItem.url}
+            filename={selectedItem.filename}
+            uploadedBy={selectedItem.uploadedBy}
+            createdAt={selectedItem.createdAt}
+            lastModified={selectedItem.lastModified}
+            dimensions={selectedItem.dimensions}
+            resolution={selectedItem.resolution}
+            sizeInBytes={selectedItem.sizeInBytes}
+            favorited={selectedItem.favorited}
+            description={selectedItem?.description}
+            setFavorite={(id: any) => setFavorite(id)}
+            deleteItem={(id: any) => deleteItem(id)}
           />
         </>
       )}

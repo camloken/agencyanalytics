@@ -15,9 +15,9 @@ function PreviewPanel(selected: {
   sizeInBytes: number,
   favorited: boolean,
   description: string,
-  setFavorite: () => void,
-  setSelectedItem: () => void,
-  deleteItem: () => void,
+  setFavorite: (id: string) => void,
+  // setSelected: (id: string) => void,
+  deleteItem: (id: string) => void,
 }) {
   const {
     id,
@@ -32,6 +32,7 @@ function PreviewPanel(selected: {
     favorited,
     description,
     setFavorite,
+    // setSelected,
     deleteItem,
   } = selected
 
