@@ -8,21 +8,21 @@ import PreviewPanel from './components/PreviewPanel'
 import './App.css'
 
 function App() {
-  const [galleryData, setGalleryData] = useState(null)
-  const [selectedItem, setSelectedItem] = useState(null)
+  const [galleryData, setGalleryData] = useState<array>(null)
+  const [selectedItem, setSelectedItem] = useState<object>(null)
   // const [favoriteImages, setFavoriteImages] = useState(null)
   const { isLoading, data, error } = useFetch(
     'https://agencyanalytics-api.vercel.app/images.json'
   )
 
-  function setPreview(id) {
+  function setPreview(id: string) {
     if (galleryData) {
       const selected = galleryData.find((item) => item.id === id)
       setSelectedItem(selected)
     }
   }
 
-  function setFavorite(id) {
+  function setFavorite(id: string) {
     const idExists = galleryData.find((item) => item.id === id)
     if (idExists) {
       const favItem = galleryData.find((item) => item.id === id)
@@ -32,7 +32,7 @@ function App() {
     }
   }
 
-  function deleteItem(id) {
+  function deleteItem(id: string) {
     const idExists = galleryData.find((item) => item.id === id)
     if (idExists) {
       const toRemove = galleryData.findIndex((item) => item.id === id)
@@ -74,8 +74,8 @@ function App() {
             sizeInBytes={selectedItem.sizeInBytes}
             favorited={selectedItem.favorited}
             description={selectedItem.description}
-            setFavorite={(id) => setFavorite(id)}
-            deleteItem={(id) => deleteItem(id)}
+            setFavorite={(id: string) => setFavorite(id)}
+            deleteItem={(id: string) => deleteItem(id)}
           />
         </>
       )}
