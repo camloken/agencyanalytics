@@ -53,35 +53,39 @@ function App() {
   return (
 
     <div className="app">
-      {isLoading && <div className="flex-center">One moment please...</div>}
-      {error && (
-        <div className="flex-center">{`There is a problem fetching the data - ${error}`}</div>
-      )}
-      {galleryData && selectedItem && (
-        <>
-          <GalleryPanel
-            imageData={galleryData}
-            setPreview={(id: string) => setPreview(id)}
-            setSelected={(el: GalleryItemProps) => setSelectedItem(el)}
-            selectedItem={selectedItem.id}
-          />
-          <PreviewPanel
-            id={selectedItem.id}
-            url={selectedItem.url}
-            filename={selectedItem.filename}
-            uploadedBy={selectedItem.uploadedBy}
-            createdAt={selectedItem.createdAt}
-            lastModified={selectedItem.lastModified}
-            dimensions={selectedItem.dimensions}
-            resolution={selectedItem.resolution}
-            sizeInBytes={selectedItem.sizeInBytes}
-            favorited={selectedItem.favorited}
-            description={selectedItem?.description}
-            setFavorite={(id: string) => setFavorite(id)}
-            deleteItem={(id: string) => deleteItem(id)}
-          />
-        </>
-      )}
+      {/* "app" must return a single element, therfore a fragment wrapper <></> is needed */}
+      {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
+      <>
+        {isLoading && <div className="flex-center">One moment please...</div>}
+        {error && (
+          <div className="flex-center">{`There is a problem fetching the data - ${error}`}</div>
+        )}
+        {data && galleryData && selectedItem && (
+          <>
+            <GalleryPanel
+              imageData={galleryData}
+              setPreview={(id: string) => setPreview(id)}
+              setSelected={(el: GalleryItemProps) => setSelectedItem(el)}
+              selectedItem={selectedItem.id}
+            />
+            <PreviewPanel
+              id={selectedItem.id}
+              url={selectedItem.url}
+              filename={selectedItem.filename}
+              uploadedBy={selectedItem.uploadedBy}
+              createdAt={selectedItem.createdAt}
+              lastModified={selectedItem.lastModified}
+              dimensions={selectedItem.dimensions}
+              resolution={selectedItem.resolution}
+              sizeInBytes={selectedItem.sizeInBytes}
+              favorited={selectedItem.favorited}
+              description={selectedItem.description}
+              setFavorite={(id: string) => setFavorite(id)}
+              deleteItem={(id: string) => deleteItem(id)}
+            />
+          </>
+        )}
+      </>
     </div>
   )
 }

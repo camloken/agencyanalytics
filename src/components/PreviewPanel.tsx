@@ -65,7 +65,7 @@ function PreviewPanel(selected: {
           onClick={() => !disabled && setFavorite(id)}
         >
           {favorited
-            ? <HeartFilled className={`favorite-icon ${disabled && 'disabled'}`} size={16} />
+            ? <HeartFilled className={`favorite-icon filled ${disabled && 'disabled'}`} size={16} />
             : <HeartOutlined className={`favorite-icon ${disabled && 'disabled'}`} size={16} />}
         </div>
       </section>

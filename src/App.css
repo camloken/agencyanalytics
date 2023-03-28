@@ -1,5 +1,5 @@
 :root {
-  font-family:  Helvetica, Arial, sans-serif;
+  font-family:  Inter, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: #333;
@@ -9,6 +9,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
+  --font-14: 0.85em; /* Appox 14px (actual 0.875em) */
   --selected-blue: #4F45E4;
   --text-light: #808080;
   --border-color: #dadada;
@@ -101,6 +102,11 @@ h4 {
   color: #999;
 }
 
+.preview-panel .favorite-icon.filled {
+  margin: 4px 1px 0 0;
+  color: #555;
+}
+
 .preview-panel .favorite-icon:hover {
   transform: scale(1.1);
   color: var(--selected-blue);
@@ -128,7 +134,7 @@ h4 {
 .preview-list {
   padding: 0;
   list-style: none;
-  font-size: 0.875em;
+  font-size: var(--font-14);
   margin-bottom: 30px;
 }
 
@@ -136,6 +142,10 @@ h4 {
   display: flex;
   padding: 10px 0;
   border-bottom: 1px solid var(--border-color);
+}
+
+.preview-list li span {
+  font-weight: 500;
 }
 
 .preview-list p {
@@ -151,13 +161,13 @@ h4 {
 }
 
 .preview-description {
-  font-size: 0.875em;
+  font-size: var(--font-14);
   margin-bottom: 30px;
 }
 
 .react-tabs__tab-list {
   list-style: none;
-  font-size: 0.875em;
+  font-size: var(--font-14);
   font-weight: 600;
   margin: 30px 0;
   padding: 0;
@@ -199,7 +209,7 @@ h4 {
 }
 
 .grid-item {
-  font-size: 0.875em;
+  font-size: var(--font-14);
   display: flex;
   flex-direction: column;
 }
@@ -237,7 +247,8 @@ h4 {
 .btn-default  {
   appearance: none;
   background-color: transparent;
-  font-size: 0.875em;
+  font-size: var(--font-14);
+  font-weight: 500;
   padding: 8px 10px;
   border: 1px solid var(--border-color);
   border-radius: 4px;
