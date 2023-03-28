@@ -1,0 +1,34 @@
+.grid-item {
+  font-size: var(--font-14);
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-item .image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 3px 3px #bbb;
+  transition: 0.2s ease;
+}
+
+.grid-item .active {
+  outline: 2px solid var(--selected-blue);
+  outline-offset: 2px;
+}
+
+.grid-item .active.image:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.grid-item > div {
+  border-radius: 8px;
+  margin-bottom: 10px;
+  height: 150px;
+}
+
+.grid-item p  {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

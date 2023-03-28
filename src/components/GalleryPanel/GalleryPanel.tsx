@@ -5,13 +5,14 @@ import {
   TabList,
   TabPanel
 } from 'react-tabs'
-import { GalleryItemProps } from './types'
-import GalleryItems from './GalleryItems'
+import './galleryPanel.css'
+import { GalleryItemProps } from '../types'
+import GalleryItems from '../GalleryItems/GalleryItems'
 
 function GalleryPanel(galleyPanelProps: {
   imageData: any, // I don't like "any", but it works. It should be changed
   setPreview: (id: string) => void,
-  setSelected: (el: any) => void,
+  setSelected: (el: GalleryItemProps) => void,
   selectedItem: string,
 }) {
   const {

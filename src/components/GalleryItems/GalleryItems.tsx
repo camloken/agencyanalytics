@@ -1,6 +1,7 @@
 import React from 'react'
+import './galleryItems.css'
 
-type GalleryItemProps = {
+type ItemProps = {
   imageData: Array<{
     id: string,
     url: string,
@@ -11,12 +12,12 @@ type GalleryItemProps = {
   selectedItem: string,
 }
 
-function GalleryItems(galleyItemProps: GalleryItemProps) {
+function GalleryItems(itemProps: ItemProps) {
   const {
     imageData,
     setPreview,
     selectedItem,
-  } = galleyItemProps
+  } = itemProps
 
   const items = imageData.map((item) => {
     const activeClassName: string = ((item.id) === selectedItem) ? 'image active' : 'image'

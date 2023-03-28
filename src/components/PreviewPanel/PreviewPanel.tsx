@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
-import HeartFilled from '../assets/HeartFilled'
-import HeartOutlined from '../assets/HeartOutlined'
+import './previewPanel.css'
+import HeartFilled from '../../assets/HeartFilled'
+import HeartOutlined from '../../assets/HeartOutlined'
 
 function PreviewPanel(selected: {
   id: string,
@@ -50,7 +51,7 @@ function PreviewPanel(selected: {
   }, [id, disabled, currentId])
 
   return (
-    <div className="preview-panel">
+    <div data-testid="previewPanel" className="preview-panel">
       <div
         className="preview-image"
         style={{ background: `url(${url}) center center / cover no-repeat` }}

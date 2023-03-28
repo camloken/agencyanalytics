@@ -4,8 +4,8 @@ import React, {
 } from 'react'
 import useFetch from 'react-fetch-hook'
 import { GalleryItemProps } from './components/types'
-import GalleryPanel from './components/GalleryPanel'
-import PreviewPanel from './components/PreviewPanel'
+import GalleryPanel from './components/GalleryPanel/GalleryPanel'
+import PreviewPanel from './components/PreviewPanel/PreviewPanel'
 import './App.css'
 
 function App() {
