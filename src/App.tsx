@@ -56,15 +56,11 @@ function App() {
 
   useEffect(() => {
     console.log('data', data)
-    // if (data && data !== undefined) {
-    //   console.log('innerData', data)
-    //   setGalleryData(data)
-    // }
     if (data && Array.isArray(data)) {
       console.log('innerData', data)
       setGalleryData(data)
     }
-    if (selectedItem === null && data) {
+    if (selectedItem === null && data && Array.isArray(data)) {
       setSelectedItem(data[0])
     }
   }, [data, selectedItem, galleryData])
