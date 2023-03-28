@@ -1,12 +1,5 @@
 import React from 'react'
 
-type GridItem = {
-  id: string,
-  url: string,
-  filename: string,
-  sizeInBytes: number,
-}
-
 type GalleryItemProps = {
   imageData: Array<{
     id: string,
@@ -40,7 +33,7 @@ function GalleryItems(galleyItemProps: GalleryItemProps) {
       </section>
     )
   })
-  // Items below must be wrapped to avoid Typescript build error
+  // "items" below must be wrapped to avoid Typescript build error
   // eslint-disable-next-line react/jsx-no-useless-fragment
   return <>{items}</>
 }

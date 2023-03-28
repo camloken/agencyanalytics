@@ -62,7 +62,6 @@ function PreviewPanel(selected: {
         </div>
         <div
           role="presentation"
-          // TODO
           onClick={() => !disabled && setFavorite(id)}
         >
           {favorited

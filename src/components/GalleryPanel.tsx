@@ -9,7 +9,7 @@ import { GalleryItemProps } from './types'
 import GalleryItems from './GalleryItems'
 
 function GalleryPanel(galleyPanelProps: {
-  imageData: any,
+  imageData: any, // I don't like "any", but it works. It should be changed
   setPreview: (id: string) => void,
   setSelected: (el: any) => void,
   selectedItem: string,
