@@ -16,17 +16,14 @@ type GalleryItem = {
   lastModified: string,
   dimensions: { height: number, width: number },
   resolution: { height: number; width: number },
+  sharedWith?: Array<object>,
   sizeInBytes: number,
   favorited: boolean,
   description: string,
-  imageData: Array<any>,
-  setPreview: () => void,
-  setSelectedItem: () => void,
-  selectedItem: string,
 }
 
 function App() {
-  const [galleryData, setGalleryData] = useState<Array<GalleryItem> | null>(null)
+  const [galleryData, setGalleryData] = useState<Array<GalleryItem>>([])
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null)
   const { isLoading, data, error } = useFetch(
     'https://agencyanalytics-api.vercel.app/images.json'
@@ -58,9 +55,18 @@ function App() {
   }
 
   useEffect(() => {
-    setGalleryData(data)
     console.log('data', data)
-    if (selectedItem === null && data) { setSelectedItem(data[0]) }
+    // if (data && data !== undefined) {
+    //   console.log('innerData', data)
+    //   setGalleryData(data)
+    // }
+    if (data && Array.isArray(data)) {
+      console.log('innerData', data)
+      setGalleryData(data)
+    }
+    if (selectedItem === null && data) {
+      setSelectedItem(data[0])
+    }
   }, [data, selectedItem, galleryData])
 
   return (
@@ -74,8 +80,8 @@ function App() {
         <>
           <GalleryPanel
             imageData={galleryData}
-            setPreview={(el: any) => setPreview(el)}
-            setSelected={(id: any) => setSelectedItem(id)}
+            setPreview={(id: string) => setPreview(id)}
+            setSelected={(el: GalleryItem) => setSelectedItem(el)}
             selectedItem={selectedItem.id}
           />
           <PreviewPanel
@@ -90,8 +96,8 @@ function App() {
             sizeInBytes={selectedItem.sizeInBytes}
             favorited={selectedItem.favorited}
             description={selectedItem?.description}
-            setFavorite={(id: any) => setFavorite(id)}
-            deleteItem={(id: any) => deleteItem(id)}
+            setFavorite={(id: string) => setFavorite(id)}
+            deleteItem={(id: string) => deleteItem(id)}
           />
         </>
       )}

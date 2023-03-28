@@ -9,7 +9,7 @@ import GalleryItems from './GalleryItems'
 
 function GalleryPanel(galleyPanelProps: {
   imageData: Array<any>,
-  setPreview: (id: any) => void,
+  setPreview: (id: string) => void,
   setSelected: (el: any) => void,
   selectedItem: string,
 }) {
