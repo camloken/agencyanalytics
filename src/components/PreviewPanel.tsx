@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 import HeartFilled from '../assets/HeartFilled'
 import HeartOutlined from '../assets/HeartOutlined'
@@ -16,7 +16,6 @@ function PreviewPanel(selected: {
   favorited: boolean,
   description: string,
   setFavorite: (id: string) => void,
-  // setSelected: (id: string) => void,
   deleteItem: (id: string) => void,
 }) {
   const {
@@ -32,12 +31,23 @@ function PreviewPanel(selected: {
     favorited,
     description,
     setFavorite,
-    // setSelected,
     deleteItem,
   } = selected
 
+  const [disabled, setDisabled] = useState<boolean>(false)
+  const [currentId, setCurrentId] = useState<string>('')
   const newDimensions = selected ? `${dimensions.width} x ${dimensions.height}` : '---'
   const newResolution = selected ? `${resolution.width} x ${resolution.height}` : '---'
+
+  useEffect(() => {
+    if (currentId !== id) {
+      setCurrentId(id)
+      setDisabled(false)
+    }
+    if (currentId === id && !disabled) {
+      setDisabled(false)
+    }
+  }, [id, disabled, currentId])
 
   return (
     <div className="preview-panel">
@@ -52,11 +62,12 @@ function PreviewPanel(selected: {
         </div>
         <div
           role="presentation"
-          onClick={() => setFavorite(id)}
+          // TODO
+          onClick={() => !disabled && setFavorite(id)}
         >
           {favorited
-            ? <HeartFilled className="favorite-icon" size={16} />
-            : <HeartOutlined className="favorite-icon" size={16} />}
+            ? <HeartFilled className={`favorite-icon ${disabled && 'disabled'}`} size={16} />
+            : <HeartOutlined className={`favorite-icon ${disabled && 'disabled'}`} size={16} />}
         </div>
       </section>
       <ul className="preview-list">
@@ -75,10 +86,15 @@ function PreviewPanel(selected: {
       )}
       <button
         type="button"
-        className="btn-default full"
-        onClick={() => deleteItem(id)}
+        className={`btn-default full ${disabled && 'disabled'}`}
+        onClick={() => {
+          if (!disabled) {
+            deleteItem(id)
+            setDisabled(true)
+          }
+        }}
       >
-        Delete
+        {disabled ? 'Deleted' : 'Delete'}
       </button>
     </div>
   )

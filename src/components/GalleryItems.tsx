@@ -13,7 +13,7 @@ type GalleryItemProps = {
     url: string,
     filename: string,
     sizeInBytes: number,
-  }>, // Probably this needs to be fixed
+  }>,
   setPreview: (id: string) => void,
   selectedItem: string,
 }

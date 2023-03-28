@@ -107,6 +107,13 @@ h4 {
   transition: 0.2s ease;
 }
 
+.preview-panel .favorite-icon.disabled,
+.preview-panel .favorite-icon.disabled:hover {
+  transform: none;
+  color: #d5d5d5;
+  transition: none;
+}
+
 .favorite-icon.blue {
   color: var(--selected-blue);
 }
@@ -227,7 +234,7 @@ h4 {
 }
 
 /* HELPERS */
-.btn-default {
+.btn-default  {
   appearance: none;
   background-color: transparent;
   font-size: 0.875em;
@@ -241,6 +248,14 @@ h4 {
   color: var(--selected-blue);
   transition: 0.3s ease;
 }
+
+.btn-default.disabled,
+.btn-default.disabled:hover {
+  color: #aaa;
+  border-color: var(--border-color);
+  transition: none;
+}
+
 
 .btn-default.full {
   width: 100%;
