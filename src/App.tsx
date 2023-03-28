@@ -24,7 +24,7 @@ type GalleryItem = {
 
 function App() {
   const [galleryData, setGalleryData] = useState<Array<GalleryItem>>([])
-  const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null)
+  const [selectedItem, setSelectedItem] = useState<GalleryItem | null >(null)
   const { isLoading, data, error } = useFetch(
     'https://agencyanalytics-api.vercel.app/images.json'
   )
@@ -60,7 +60,8 @@ function App() {
       setGalleryData(data)
     }
     if (selectedItem === null && data && Array.isArray(data)) {
-      setSelectedItem(data[0])
+      const newObj = data[0]
+      setSelectedItem(newObj)
     }
   }, [data, selectedItem, galleryData])
 
