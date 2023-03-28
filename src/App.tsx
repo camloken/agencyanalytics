@@ -55,7 +55,6 @@ function App() {
   }
 
   useEffect(() => {
-    console.log('data', data)
     if (data && Array.isArray(data)) {
       console.log('innerData', data)
       setGalleryData(data)
