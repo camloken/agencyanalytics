@@ -8,7 +8,12 @@ type GridItem = {
 }
 
 type GalleryItemProps = {
-  imageData: Array<object>,
+  imageData: Array<{
+    id: string,
+    url: string,
+    filename: string,
+    sizeInBytes: number,
+  }>, // Probably this needs to be fixed
   setPreview: (id: string) => void,
   selectedItem: string,
 }
@@ -20,24 +25,18 @@ function GalleryItems(galleyItemProps: GalleryItemProps) {
     selectedItem,
   } = galleyItemProps
 
-  const items = imageData.map((item: GridItem) => {
-    const {
-      id,
-      url,
-      filename,
-      sizeInBytes
-    } = item
-    const activeClassName: string = ((id) === selectedItem) ? 'image active' : 'image'
+  const items = imageData.map((item) => {
+    const activeClassName: string = ((item.id) === selectedItem) ? 'image active' : 'image'
     return (
-      <section className="grid-item" key={`${id}${Math.random()}`}>
+      <section className="grid-item" key={`${item.id}${Math.random()}`}>
         <div
           className={activeClassName}
-          style={{ background: `url(${url}) center center / cover no-repeat` }}
-          onClick={() => setPreview(id)}
+          style={{ background: `url(${item.url}) center center / cover no-repeat` }}
+          onClick={() => setPreview(item.id)}
           role="presentation"
         />
-        <p title={filename}><b>{filename}</b></p>
-        <p className="text-light">{`${((sizeInBytes) / 1000000).toFixed(1)} MB`}</p>
+        <p title={item.filename}><b>{item.filename}</b></p>
+        <p className="text-light">{`${((item.sizeInBytes) / 1000000).toFixed(1)} MB`}</p>
       </section>
     )
   })

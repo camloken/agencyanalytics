@@ -5,10 +5,11 @@ import {
   TabList,
   TabPanel
 } from 'react-tabs'
+import { GalleryItemProps } from './types'
 import GalleryItems from './GalleryItems'
 
 function GalleryPanel(galleyPanelProps: {
-  imageData: Array<any>,
+  imageData: any,
   setPreview: (id: string) => void,
   setSelected: (el: any) => void,
   selectedItem: string,
@@ -21,11 +22,11 @@ function GalleryPanel(galleyPanelProps: {
   } = galleyPanelProps
 
   // Sorted by date
-  const sortedImages: Array<{ createdAt: string, favorited: boolean }> =
-  imageData.sort((a, b) => new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf())
+  const sortedImages =
+    imageData.sort((a: GalleryItemProps, b: GalleryItemProps) => new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf())
   // Sorted by favorties
-  const favoriteImages: Array<{ favorited: boolean }> =
-  sortedImages.filter((item) => item.favorited === true)
+  const favoriteImages =
+    sortedImages.filter((item: GalleryItemProps) => item.favorited === true)
 
   useEffect(() => {
     setSelected(sortedImages[0])

@@ -3,28 +3,14 @@ import React, {
   useEffect
 } from 'react'
 import useFetch from 'react-fetch-hook'
+import { GalleryItemProps } from './components/types'
 import GalleryPanel from './components/GalleryPanel'
 import PreviewPanel from './components/PreviewPanel'
 import './App.css'
 
-type GalleryItem = {
-  id: string,
-  url: string,
-  filename: string,
-  uploadedBy: string,
-  createdAt: string,
-  lastModified: string,
-  dimensions: { height: number, width: number },
-  resolution: { height: number; width: number },
-  sharedWith?: Array<object>,
-  sizeInBytes: number,
-  favorited: boolean,
-  description: string,
-}
-
 function App() {
-  const [galleryData, setGalleryData] = useState<Array<GalleryItem>>([])
-  const [selectedItem, setSelectedItem] = useState<GalleryItem | null >(null)
+  const [galleryData, setGalleryData] = useState<GalleryItemProps[] | null>(null)
+  const [selectedItem, setSelectedItem] = useState<GalleryItemProps | null >(null)
   const { isLoading, data, error } = useFetch(
     'https://agencyanalytics-api.vercel.app/images.json'
   )
@@ -77,7 +63,7 @@ function App() {
           <GalleryPanel
             imageData={galleryData}
             setPreview={(id: string) => setPreview(id)}
-            setSelected={(el: GalleryItem) => setSelectedItem(el)}
+            setSelected={(el: GalleryItemProps) => setSelectedItem(el)}
             selectedItem={selectedItem.id}
           />
           <PreviewPanel
