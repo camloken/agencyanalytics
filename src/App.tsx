@@ -42,7 +42,6 @@ function App() {
 
   useEffect(() => {
     if (data && Array.isArray(data)) {
-      console.log('innerData', data)
       setGalleryData(data)
     }
     if (selectedItem === null && data && Array.isArray(data)) {
