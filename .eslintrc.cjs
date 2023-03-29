@@ -26,6 +26,7 @@ module.exports = {
     '@typescript-eslint/semi': ['error', 'never'],
     'react/jsx-wrap-multilines': 'off',
     'react/jsx-one-expression-per-line': 'off',
+    'react/react-in-jsx-scope': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
     'eol-last': 0,
     'no-unused-expressions': 'off',

@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest --dom"
+    "test": "vitest --environment jsdom"
   },
   "dependencies": {
     "moment": "^2.29.4",

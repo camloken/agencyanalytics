@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import {
   Tab,
   Tabs,
@@ -10,6 +10,7 @@ import { GalleryItemProps } from '../types'
 import GalleryItems from '../GalleryItems/GalleryItems'
 
 function GalleryPanel(galleyPanelProps: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   imageData: any, // I don't like "any", but it works. It should be changed
   setPreview: (id: string) => void,
   setSelected: (el: GalleryItemProps) => void,
