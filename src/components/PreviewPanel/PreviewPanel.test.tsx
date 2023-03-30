@@ -31,12 +31,12 @@ const panel = (
 )
 
 afterEach(async () => {
-  await cleanup()
+  cleanup()
 })
 
 describe('GalleryItems Test', () => {
   it('renders the panel', async () => {
-    await expect(panel).toBeTruthy()
+    expect(panel).toBeTruthy()
   })
 
   it('defines the background image url', async () => {
@@ -46,12 +46,12 @@ describe('GalleryItems Test', () => {
 
   it('the "uploadedBy" information is visible', async () => {
     render(panel)
-    await expect(screen.getByText('john smith')).toBeVisible()
+    expect(screen.getByText('john smith')).toBeVisible()
   })
 
   it('the "filename" information is visible', async () => {
     render(panel)
-    await expect(screen.getByText('custom_name')).toBeVisible()
+    expect(screen.getByText('custom_name')).toBeVisible()
   })
 
   // More to go tests here
