@@ -53,6 +53,7 @@ function PreviewPanel(selected: {
   return (
     <div data-testid="previewPanel" className="preview-panel">
       <div
+        data-testid="image"
         className="preview-image"
         style={{ background: `url(${url}) center center / cover no-repeat` }}
       />
