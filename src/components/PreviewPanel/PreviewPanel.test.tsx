@@ -41,7 +41,7 @@ describe('GalleryItems Test', () => {
 
   it('defines the background image url', async () => {
     render(panel)
-    expect(screen.getByTestId('image')).toHaveStyle(`background-image: url("${props.url}") center center / cover no-repeat`)
+    expect(screen.getByTestId('image')).toHaveStyle(`background: url("${props.url}") center center / cover no-repeat`)
   })
 
   it('the "uploadedBy" information is visible', async () => {
