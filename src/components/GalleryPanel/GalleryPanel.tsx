@@ -11,7 +11,7 @@ import GalleryItems from '../GalleryItems/GalleryItems'
 
 function GalleryPanel(galleyPanelProps: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  imageData: any, // I don't like "any", but it works. It should be changed
+  imageData: GalleryItemProps[],
   setPreview: (id: string) => void,
   setSelected: (el: GalleryItemProps) => void,
   selectedItem: string,
@@ -24,15 +24,16 @@ function GalleryPanel(galleyPanelProps: {
   } = galleyPanelProps
 
   // Sorted by date
-  const sortedImages =
-    imageData.sort((a: GalleryItemProps, b: GalleryItemProps) => new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf())
+  const sortedImages = imageData.sort(
+    (a, b) => new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf()
+  )
   // Sorted by favorties
   const favoriteImages =
-    sortedImages.filter((item: GalleryItemProps) => item.favorited === true)
+    sortedImages.filter((item) => item.favorited === true)
 
   useEffect(() => {
     setSelected(sortedImages[0])
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

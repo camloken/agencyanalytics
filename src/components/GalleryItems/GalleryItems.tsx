@@ -1,13 +1,8 @@
-import React from 'react'
+import { GalleryItemProps } from '../types'
 import './galleryItems.css'
 
 type ItemProps = {
-  imageData: Array<{
-    id: string,
-    url: string,
-    filename: string,
-    sizeInBytes: number,
-  }>,
+  imageData: GalleryItemProps[],
   setPreview: (id: string) => void,
   selectedItem: string,
 }
