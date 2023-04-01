@@ -45,8 +45,7 @@ function App() {
       setGalleryData(data)
     }
     if (selectedItem === null && data && Array.isArray(data)) {
-      const newObj = data[0]
-      setSelectedItem(newObj)
+      setSelectedItem(data[0])
     }
   }, [data, selectedItem, galleryData])
 
